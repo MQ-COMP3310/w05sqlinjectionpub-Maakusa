@@ -57,7 +57,7 @@ public class App {
             String line;
             int i = 1;
             while ((line = br.readLine()) != null) {
-                if(Pattern.matches("^[a-zA-Z]{4}", line)) {
+                if(Pattern.matches("^[a-z]{4}", line)) {
                     logger.log(Level.INFO, line);
                     wordleDatabaseConnection.addValidWord(i, line);
                     i++;
@@ -81,7 +81,7 @@ public class App {
             while (!guess.equals("q")) {
                 System.out.println("You've guessed '" + guess+"'.");
 
-                if(!Pattern.matches("^[a-zA-Z]{4}", guess)) {
+                if(!Pattern.matches("^[a-z]{4}", guess)) {
                     System.out.println("Please enter a valid 4 letter word");
                 }else if (wordleDatabaseConnection.isValidWord(guess)) { 
                     System.out.println("Success! It is in the the list.\n");
@@ -94,7 +94,7 @@ public class App {
                 guess = scanner.nextLine();
             }
         } catch (NoSuchElementException | IllegalStateException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, e.getMessage());
         }
 
     }
